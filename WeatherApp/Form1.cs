@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DotNetEnv;
+using System.IO;
+using WeatherApp.OpenWeather_API;
 
 namespace WeatherApp
 {
@@ -19,11 +21,26 @@ namespace WeatherApp
         private Button btnGetWeather;
         private Label lblWeather;
 
+        // Define the API key as a private field
+        private readonly string OPENWEATHER_API_KEY;
+        string workingDirectory = Directory.GetCurrentDirectory();
+        string envPath = Path.Combine(Directory.GetCurrentDirectory(), "../../.env");
+
+
         public Form1()
         {
             InitializeComponent();
             InitializeCustomComponents();
             Env.Load();
+
+            // Load the API key from environment variables
+            OPENWEATHER_API_KEY = Environment.GetEnvironmentVariable("OPENWEATHER_API_KEY");
+
+            if (string.IsNullOrEmpty(OPENWEATHER_API_KEY))
+            {
+                MessageBox.Show("API key is missing. Please set the OPENWEATHER_API_KEY environment variable.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+            }
         }
 
         private void InitializeCustomComponents()
@@ -39,8 +56,8 @@ namespace WeatherApp
             // Add some example cities to the ComboBox
             cmbCity.Items.Add("New York");
             cmbCity.Items.Add("London");
-            cmbCity.Items.Add("Paris");
-            cmbCity.Items.Add("Tokyo");
+            cmbCity.Items.Add("Philadelphia");
+            cmbCity.Items.Add("Lancaster");
             cmbCity.SelectedIndex = 0; // Select the first city by default
 
             // Button to get the weather information
@@ -70,9 +87,7 @@ namespace WeatherApp
         {
             // Get selected city from the ComboBox
             string city = cmbCity.SelectedItem.ToString();
-            // Replace with your actual API key
-            string apiKey = "";
-            string url = $"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={apiKey}&units=metric";
+            string url = $"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={OPENWEATHER_API_KEY}&units=metric";
 
             using (var client = new HttpClient())
             {
