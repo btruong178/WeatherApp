@@ -1,0 +1,715 @@
+### YamlMime:ManagedReference
+items:
+- uid: WeatherApp.OpenWeather.OpenWeather_API
+  commentId: T:WeatherApp.OpenWeather.OpenWeather_API
+  id: OpenWeather_API
+  parent: WeatherApp.OpenWeather
+  children:
+  - WeatherApp.OpenWeather.OpenWeather_API.APIKey
+  - WeatherApp.OpenWeather.OpenWeather_API.API_Call_Output
+  - WeatherApp.OpenWeather.OpenWeather_API.API_Call_Url
+  - WeatherApp.OpenWeather.OpenWeather_API.BaseUrl
+  - WeatherApp.OpenWeather.OpenWeather_API.CityName
+  - WeatherApp.OpenWeather.OpenWeather_API.Language
+  - WeatherApp.OpenWeather.OpenWeather_API.Mode
+  - WeatherApp.OpenWeather.OpenWeather_API.Units
+  langs:
+  - csharp
+  - vb
+  name: OpenWeather_API
+  nameWithType: OpenWeather_API
+  fullName: WeatherApp.OpenWeather.OpenWeather_API
+  type: Class
+  source:
+    remote:
+      path: WeatherApp/OpenWeather/OpenWeather_API.cs
+      branch: gh-pages
+      repo: https://github.com/btruong178/WeatherApp.git
+    id: OpenWeather_API
+    path: ../WeatherApp/OpenWeather/OpenWeather_API.cs
+    startLine: 10
+  assemblies:
+  - WeatherApp
+  namespace: WeatherApp.OpenWeather
+  summary: Provides methods for accessing the OpenWeather API.
+  example: []
+  syntax:
+    content: public class OpenWeather_API
+    content.vb: Public Class OpenWeather_API
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+- uid: WeatherApp.OpenWeather.OpenWeather_API.CityName
+  commentId: P:WeatherApp.OpenWeather.OpenWeather_API.CityName
+  id: CityName
+  parent: WeatherApp.OpenWeather.OpenWeather_API
+  langs:
+  - csharp
+  - vb
+  name: CityName
+  nameWithType: OpenWeather_API.CityName
+  fullName: WeatherApp.OpenWeather.OpenWeather_API.CityName
+  type: Property
+  source:
+    remote:
+      path: WeatherApp/OpenWeather/OpenWeather_API.cs
+      branch: gh-pages
+      repo: https://github.com/btruong178/WeatherApp.git
+    id: CityName
+    path: ../WeatherApp/OpenWeather/OpenWeather_API.cs
+    startLine: 15
+  assemblies:
+  - WeatherApp
+  namespace: WeatherApp.OpenWeather
+  summary: Gets or sets the name of the city for which the weather is requested.
+  example: []
+  syntax:
+    content: public string CityName { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property CityName As String
+  overload: WeatherApp.OpenWeather.OpenWeather_API.CityName*
+- uid: WeatherApp.OpenWeather.OpenWeather_API.APIKey
+  commentId: P:WeatherApp.OpenWeather.OpenWeather_API.APIKey
+  id: APIKey
+  parent: WeatherApp.OpenWeather.OpenWeather_API
+  langs:
+  - csharp
+  - vb
+  name: APIKey
+  nameWithType: OpenWeather_API.APIKey
+  fullName: WeatherApp.OpenWeather.OpenWeather_API.APIKey
+  type: Property
+  source:
+    remote:
+      path: WeatherApp/OpenWeather/OpenWeather_API.cs
+      branch: gh-pages
+      repo: https://github.com/btruong178/WeatherApp.git
+    id: APIKey
+    path: ../WeatherApp/OpenWeather/OpenWeather_API.cs
+    startLine: 20
+  assemblies:
+  - WeatherApp
+  namespace: WeatherApp.OpenWeather
+  summary: Gets or sets the API key for OpenWeather. It defaults to the value provided in the OPENWEATHER_API_KEY environment variable.
+  example: []
+  syntax:
+    content: public string APIKey { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property APIKey As String
+  overload: WeatherApp.OpenWeather.OpenWeather_API.APIKey*
+- uid: WeatherApp.OpenWeather.OpenWeather_API.BaseUrl
+  commentId: P:WeatherApp.OpenWeather.OpenWeather_API.BaseUrl
+  id: BaseUrl
+  parent: WeatherApp.OpenWeather.OpenWeather_API
+  langs:
+  - csharp
+  - vb
+  name: BaseUrl
+  nameWithType: OpenWeather_API.BaseUrl
+  fullName: WeatherApp.OpenWeather.OpenWeather_API.BaseUrl
+  type: Property
+  source:
+    remote:
+      path: WeatherApp/OpenWeather/OpenWeather_API.cs
+      branch: gh-pages
+      repo: https://github.com/btruong178/WeatherApp.git
+    id: BaseUrl
+    path: ../WeatherApp/OpenWeather/OpenWeather_API.cs
+    startLine: 25
+  assemblies:
+  - WeatherApp
+  namespace: WeatherApp.OpenWeather
+  summary: Gets or sets the base URL for the OpenWeather API.
+  example: []
+  syntax:
+    content: public string BaseUrl { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property BaseUrl As String
+  overload: WeatherApp.OpenWeather.OpenWeather_API.BaseUrl*
+- uid: WeatherApp.OpenWeather.OpenWeather_API.Units
+  commentId: P:WeatherApp.OpenWeather.OpenWeather_API.Units
+  id: Units
+  parent: WeatherApp.OpenWeather.OpenWeather_API
+  langs:
+  - csharp
+  - vb
+  name: Units
+  nameWithType: OpenWeather_API.Units
+  fullName: WeatherApp.OpenWeather.OpenWeather_API.Units
+  type: Property
+  source:
+    remote:
+      path: WeatherApp/OpenWeather/OpenWeather_API.cs
+      branch: gh-pages
+      repo: https://github.com/btruong178/WeatherApp.git
+    id: Units
+    path: ../WeatherApp/OpenWeather/OpenWeather_API.cs
+    startLine: 30
+  assemblies:
+  - WeatherApp
+  namespace: WeatherApp.OpenWeather
+  summary: Gets or sets the units parameter for the API call. Defaults to "imperial".
+  example: []
+  syntax:
+    content: public string Units { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Units As String
+  overload: WeatherApp.OpenWeather.OpenWeather_API.Units*
+- uid: WeatherApp.OpenWeather.OpenWeather_API.Language
+  commentId: P:WeatherApp.OpenWeather.OpenWeather_API.Language
+  id: Language
+  parent: WeatherApp.OpenWeather.OpenWeather_API
+  langs:
+  - csharp
+  - vb
+  name: Language
+  nameWithType: OpenWeather_API.Language
+  fullName: WeatherApp.OpenWeather.OpenWeather_API.Language
+  type: Property
+  source:
+    remote:
+      path: WeatherApp/OpenWeather/OpenWeather_API.cs
+      branch: gh-pages
+      repo: https://github.com/btruong178/WeatherApp.git
+    id: Language
+    path: ../WeatherApp/OpenWeather/OpenWeather_API.cs
+    startLine: 35
+  assemblies:
+  - WeatherApp
+  namespace: WeatherApp.OpenWeather
+  summary: Gets or sets the language parameter for the API call. Defaults to "en".
+  example: []
+  syntax:
+    content: public string Language { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Language As String
+  overload: WeatherApp.OpenWeather.OpenWeather_API.Language*
+- uid: WeatherApp.OpenWeather.OpenWeather_API.Mode
+  commentId: P:WeatherApp.OpenWeather.OpenWeather_API.Mode
+  id: Mode
+  parent: WeatherApp.OpenWeather.OpenWeather_API
+  langs:
+  - csharp
+  - vb
+  name: Mode
+  nameWithType: OpenWeather_API.Mode
+  fullName: WeatherApp.OpenWeather.OpenWeather_API.Mode
+  type: Property
+  source:
+    remote:
+      path: WeatherApp/OpenWeather/OpenWeather_API.cs
+      branch: gh-pages
+      repo: https://github.com/btruong178/WeatherApp.git
+    id: Mode
+    path: ../WeatherApp/OpenWeather/OpenWeather_API.cs
+    startLine: 40
+  assemblies:
+  - WeatherApp
+  namespace: WeatherApp.OpenWeather
+  summary: Gets or sets the mode parameter for the API call. Defaults to "json".
+  example: []
+  syntax:
+    content: public string Mode { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Mode As String
+  overload: WeatherApp.OpenWeather.OpenWeather_API.Mode*
+- uid: WeatherApp.OpenWeather.OpenWeather_API.API_Call_Url
+  commentId: M:WeatherApp.OpenWeather.OpenWeather_API.API_Call_Url
+  id: API_Call_Url
+  parent: WeatherApp.OpenWeather.OpenWeather_API
+  langs:
+  - csharp
+  - vb
+  name: API_Call_Url()
+  nameWithType: OpenWeather_API.API_Call_Url()
+  fullName: WeatherApp.OpenWeather.OpenWeather_API.API_Call_Url()
+  type: Method
+  source:
+    remote:
+      path: WeatherApp/OpenWeather/OpenWeather_API.cs
+      branch: gh-pages
+      repo: https://github.com/btruong178/WeatherApp.git
+    id: API_Call_Url
+    path: ../WeatherApp/OpenWeather/OpenWeather_API.cs
+    startLine: 46
+  assemblies:
+  - WeatherApp
+  namespace: WeatherApp.OpenWeather
+  summary: Constructs the API call URL.
+  example: []
+  syntax:
+    content: public string API_Call_Url()
+    return:
+      type: System.String
+      description: A string representing the full API call URL.
+    content.vb: Public Function API_Call_Url() As String
+  overload: WeatherApp.OpenWeather.OpenWeather_API.API_Call_Url*
+- uid: WeatherApp.OpenWeather.OpenWeather_API.API_Call_Output
+  commentId: M:WeatherApp.OpenWeather.OpenWeather_API.API_Call_Output
+  id: API_Call_Output
+  parent: WeatherApp.OpenWeather.OpenWeather_API
+  langs:
+  - csharp
+  - vb
+  name: API_Call_Output()
+  nameWithType: OpenWeather_API.API_Call_Output()
+  fullName: WeatherApp.OpenWeather.OpenWeather_API.API_Call_Output()
+  type: Method
+  source:
+    remote:
+      path: WeatherApp/OpenWeather/OpenWeather_API.cs
+      branch: gh-pages
+      repo: https://github.com/btruong178/WeatherApp.git
+    id: API_Call_Output
+    path: ../WeatherApp/OpenWeather/OpenWeather_API.cs
+    startLine: 55
+  assemblies:
+  - WeatherApp
+  namespace: WeatherApp.OpenWeather
+  summary: Asynchronously calls the API and retrieves the response.
+  example: []
+  syntax:
+    content: public Task<string> API_Call_Output()
+    return:
+      type: System.Threading.Tasks.Task{System.String}
+      description: A task that returns the API response as a string.
+    content.vb: Public Function API_Call_Output() As Task(Of String)
+  overload: WeatherApp.OpenWeather.OpenWeather_API.API_Call_Output*
+references:
+- uid: WeatherApp.OpenWeather
+  commentId: N:WeatherApp.OpenWeather
+  href: WeatherApp.html
+  name: WeatherApp.OpenWeather
+  nameWithType: WeatherApp.OpenWeather
+  fullName: WeatherApp.OpenWeather
+  spec.csharp:
+  - uid: WeatherApp
+    name: WeatherApp
+    href: WeatherApp.html
+  - name: .
+  - uid: WeatherApp.OpenWeather
+    name: OpenWeather
+    href: WeatherApp.OpenWeather.html
+  spec.vb:
+  - uid: WeatherApp
+    name: WeatherApp
+    href: WeatherApp.html
+  - name: .
+  - uid: WeatherApp.OpenWeather
+    name: OpenWeather
+    href: WeatherApp.OpenWeather.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: WeatherApp.OpenWeather.OpenWeather_API.CityName*
+  commentId: Overload:WeatherApp.OpenWeather.OpenWeather_API.CityName
+  href: WeatherApp.OpenWeather.OpenWeather_API.html#WeatherApp_OpenWeather_OpenWeather_API_CityName
+  name: CityName
+  nameWithType: OpenWeather_API.CityName
+  fullName: WeatherApp.OpenWeather.OpenWeather_API.CityName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: WeatherApp.OpenWeather.OpenWeather_API.APIKey*
+  commentId: Overload:WeatherApp.OpenWeather.OpenWeather_API.APIKey
+  href: WeatherApp.OpenWeather.OpenWeather_API.html#WeatherApp_OpenWeather_OpenWeather_API_APIKey
+  name: APIKey
+  nameWithType: OpenWeather_API.APIKey
+  fullName: WeatherApp.OpenWeather.OpenWeather_API.APIKey
+- uid: WeatherApp.OpenWeather.OpenWeather_API.BaseUrl*
+  commentId: Overload:WeatherApp.OpenWeather.OpenWeather_API.BaseUrl
+  href: WeatherApp.OpenWeather.OpenWeather_API.html#WeatherApp_OpenWeather_OpenWeather_API_BaseUrl
+  name: BaseUrl
+  nameWithType: OpenWeather_API.BaseUrl
+  fullName: WeatherApp.OpenWeather.OpenWeather_API.BaseUrl
+- uid: WeatherApp.OpenWeather.OpenWeather_API.Units*
+  commentId: Overload:WeatherApp.OpenWeather.OpenWeather_API.Units
+  href: WeatherApp.OpenWeather.OpenWeather_API.html#WeatherApp_OpenWeather_OpenWeather_API_Units
+  name: Units
+  nameWithType: OpenWeather_API.Units
+  fullName: WeatherApp.OpenWeather.OpenWeather_API.Units
+- uid: WeatherApp.OpenWeather.OpenWeather_API.Language*
+  commentId: Overload:WeatherApp.OpenWeather.OpenWeather_API.Language
+  href: WeatherApp.OpenWeather.OpenWeather_API.html#WeatherApp_OpenWeather_OpenWeather_API_Language
+  name: Language
+  nameWithType: OpenWeather_API.Language
+  fullName: WeatherApp.OpenWeather.OpenWeather_API.Language
+- uid: WeatherApp.OpenWeather.OpenWeather_API.Mode*
+  commentId: Overload:WeatherApp.OpenWeather.OpenWeather_API.Mode
+  href: WeatherApp.OpenWeather.OpenWeather_API.html#WeatherApp_OpenWeather_OpenWeather_API_Mode
+  name: Mode
+  nameWithType: OpenWeather_API.Mode
+  fullName: WeatherApp.OpenWeather.OpenWeather_API.Mode
+- uid: WeatherApp.OpenWeather.OpenWeather_API.API_Call_Url*
+  commentId: Overload:WeatherApp.OpenWeather.OpenWeather_API.API_Call_Url
+  href: WeatherApp.OpenWeather.OpenWeather_API.html#WeatherApp_OpenWeather_OpenWeather_API_API_Call_Url
+  name: API_Call_Url
+  nameWithType: OpenWeather_API.API_Call_Url
+  fullName: WeatherApp.OpenWeather.OpenWeather_API.API_Call_Url
+- uid: WeatherApp.OpenWeather.OpenWeather_API.API_Call_Output*
+  commentId: Overload:WeatherApp.OpenWeather.OpenWeather_API.API_Call_Output
+  href: WeatherApp.OpenWeather.OpenWeather_API.html#WeatherApp_OpenWeather_OpenWeather_API_API_Call_Output
+  name: API_Call_Output
+  nameWithType: OpenWeather_API.API_Call_Output
+  fullName: WeatherApp.OpenWeather.OpenWeather_API.API_Call_Output
+- uid: System.Threading.Tasks.Task{System.String}
+  commentId: T:System.Threading.Tasks.Task{System.String}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<string>
+  nameWithType: Task<string>
+  fullName: System.Threading.Tasks.Task<string>
+  nameWithType.vb: Task(Of String)
+  fullName.vb: System.Threading.Tasks.Task(Of String)
+  name.vb: Task(Of String)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks

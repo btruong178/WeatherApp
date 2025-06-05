@@ -214,8 +214,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="OpenWeather\Data\OpenWeather_Cities.cs" />
-    <Compile Include="OpenWeather\Data\OpenWeather_US_Cities.cs" />
+    <Compile Include="OpenWeather\Data\OpenWeather_US_City_Data.cs" />
     <Compile Include="OpenWeather\OpenWeather_API.cs" />
     <Compile Include="OpenWeather\WeatherResponse.cs" />
     <Compile Include="Program.cs" />
@@ -235,7 +234,6 @@
     </Compile>
     <None Include=".env" />
     <None Include="OpenWeather\Data\city.list.json" />
-    <None Include="OpenWeather\Data\current.city.list.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
