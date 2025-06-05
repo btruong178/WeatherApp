@@ -23,6 +23,17 @@ namespace WeatherApp
         // List of available cities for filtering
         private readonly List<string> cities = new List<string> { };
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Form1"/> class.
+        /// </summary>
+        /// <remarks>
+        /// This constructor performs the following actions: 
+        /// 1. Loads environment variables using the <see cref="Env.Load(string, LoadOptions)"/> method.
+        /// 2. Initializes the form components.
+        /// 3. Sets up the list of cities by calling <see cref="InitializeCities"/>.
+        /// If an error occurs during initialization, a message box is displayed
+        /// with the error details.
+        /// </remarks>
         public Form1()
         {
             try
@@ -39,13 +50,6 @@ namespace WeatherApp
 
         private void InitializeCities()
         {
-            //string jsonCitiesString = File.ReadAllText(Environment.GetEnvironmentVariable("CITY_DATA_FILEPATH"));
-            //openWeatherCities = JsonConvert.DeserializeObject<List<OpenWeather_Cities>>(jsonCitiesString);
-
-            //cities.AddRange(OpenWeather_Cities.Cities);
-            //cities.Sort();
-            //cmbCity.DataSource = cities;
-
             string jsonCitiesString = File.ReadAllText(Environment.GetEnvironmentVariable("CITY_DATA_FILEPATH"));
             openWeatherUSCities = JsonConvert.DeserializeObject<List<OpenWeather_US_Cities>>(jsonCitiesString);
 

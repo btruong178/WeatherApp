@@ -31,7 +31,7 @@
             this.cmbCity = new System.Windows.Forms.ComboBox();
             this.btnGetWeather = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.TitleLabel = new System.Windows.Forms.Label();
             this.lblWeather = new System.Windows.Forms.Label();
             this.CityLabel = new System.Windows.Forms.Label();
             this.cmbStates = new System.Windows.Forms.ComboBox();
@@ -65,16 +65,16 @@
             this.label1.Size = new System.Drawing.Size(0, 13);
             this.label1.TabIndex = 2;
             // 
-            // label2
+            // TitleLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
-            this.label2.Location = new System.Drawing.Point(338, 1);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(289, 37);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Monsieur Monsoon";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.TitleLabel.AutoSize = true;
+            this.TitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
+            this.TitleLabel.Location = new System.Drawing.Point(338, 1);
+            this.TitleLabel.Name = "TitleLabel";
+            this.TitleLabel.Size = new System.Drawing.Size(246, 37);
+            this.TitleLabel.TabIndex = 3;
+            this.TitleLabel.Text = "Monsieur Momo";
+            this.TitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblWeather
             // 
@@ -121,7 +121,7 @@
             this.Controls.Add(this.cmbStates);
             this.Controls.Add(this.CityLabel);
             this.Controls.Add(this.lblWeather);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.TitleLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnGetWeather);
             this.Controls.Add(this.cmbCity);
@@ -139,7 +139,7 @@
         private System.Windows.Forms.ComboBox cmbCity;
         private System.Windows.Forms.Button btnGetWeather;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label TitleLabel;
         private System.Windows.Forms.Label lblWeather;
         private System.Windows.Forms.Label CityLabel;
         private System.Windows.Forms.ComboBox cmbStates;
