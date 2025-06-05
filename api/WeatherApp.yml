@@ -1,0 +1,23 @@
+### YamlMime:ManagedReference
+items:
+- uid: WeatherApp
+  commentId: N:WeatherApp
+  id: WeatherApp
+  children:
+  - WeatherApp.Form1
+  langs:
+  - csharp
+  - vb
+  name: WeatherApp
+  nameWithType: WeatherApp
+  fullName: WeatherApp
+  type: Namespace
+  assemblies:
+  - WeatherApp
+references:
+- uid: WeatherApp.Form1
+  commentId: T:WeatherApp.Form1
+  href: WeatherApp.Form1.html
+  name: Form1
+  nameWithType: Form1
+  fullName: WeatherApp.Form1
