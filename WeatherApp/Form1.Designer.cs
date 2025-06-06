@@ -1,6 +1,6 @@
 ﻿namespace WeatherApp
 {
-    partial class Form1
+    partial class HomePage
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,6 @@
         {
             this.cmbCity = new System.Windows.Forms.ComboBox();
             this.btnGetWeather = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.TitleLabel = new System.Windows.Forms.Label();
             this.lblWeather = new System.Windows.Forms.Label();
             this.CityLabel = new System.Windows.Forms.Label();
@@ -45,7 +44,7 @@
             this.cmbCity.Name = "cmbCity";
             this.cmbCity.Size = new System.Drawing.Size(160, 21);
             this.cmbCity.TabIndex = 0;
-            this.cmbCity.SelectionChangeCommitted += new System.EventHandler(this.CmdCity_SelectionChangeCommitted);
+            this.cmbCity.SelectionChangeCommitted += new System.EventHandler(this.SelectionChangeCommitted_FocusToButton);
             // 
             // btnGetWeather
             // 
@@ -56,14 +55,6 @@
             this.btnGetWeather.Text = "Get Weather";
             this.btnGetWeather.UseVisualStyleBackColor = true;
             this.btnGetWeather.Click += new System.EventHandler(this.BtnGetWeather_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(304, 40);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 13);
-            this.label1.TabIndex = 2;
             // 
             // TitleLabel
             // 
@@ -102,6 +93,8 @@
             this.cmbStates.Name = "cmbStates";
             this.cmbStates.Size = new System.Drawing.Size(51, 21);
             this.cmbStates.TabIndex = 6;
+            this.cmbStates.SelectedIndexChanged += new System.EventHandler(this.SelectedStateChanged_UpdateCityChoices);
+            this.cmbStates.SelectionChangeCommitted += new System.EventHandler(this.SelectionChangeCommitted_FocusToButton);
             // 
             // StateLabel
             // 
@@ -112,7 +105,7 @@
             this.StateLabel.TabIndex = 7;
             this.StateLabel.Text = "State";
             // 
-            // Form1
+            // HomePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -122,10 +115,9 @@
             this.Controls.Add(this.CityLabel);
             this.Controls.Add(this.lblWeather);
             this.Controls.Add(this.TitleLabel);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnGetWeather);
             this.Controls.Add(this.cmbCity);
-            this.Name = "Form1";
+            this.Name = "HomePage";
             this.Padding = new System.Windows.Forms.Padding(100);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
@@ -138,7 +130,6 @@
 
         private System.Windows.Forms.ComboBox cmbCity;
         private System.Windows.Forms.Button btnGetWeather;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label TitleLabel;
         private System.Windows.Forms.Label lblWeather;
         private System.Windows.Forms.Label CityLabel;
