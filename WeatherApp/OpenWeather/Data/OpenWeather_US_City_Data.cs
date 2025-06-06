@@ -16,7 +16,9 @@ namespace WeatherApp.OpenWeather.Data
         /// <summary>
         /// A dictionary mapping state abbreviations to a list of city names.
         /// </summary>
-        public static Dictionary<string, List<string>> usCities = new Dictionary<string, List<string>>();
+        public static Dictionary<string, List<string>> usDictionary = new Dictionary<string, List<string>>();
+        public static List<string> usStates = new List<string>();
+        public static List<string> usCities = new List<string>();
 
         /// <summary>
         /// Gets or sets the unique identifier.
@@ -73,11 +75,25 @@ namespace WeatherApp.OpenWeather.Data
         [OnDeserialized]
         private void Get_US_Cities(StreamingContext context)
         {
-            if (!usCities.ContainsKey(State))
+            if (string.IsNullOrEmpty(State) || string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Country))
             {
-                usCities[State] = new List<string>();
+                return;
             }
-            usCities[State].Add(Name);
+            else if (Country != "US" || Name == "United States")
+            {
+                return;
+            }
+            else
+            {
+                State = State.ToUpperInvariant();
+                if (!usDictionary.ContainsKey(State))
+                {
+                    usDictionary[State] = new List<string>();
+                    usStates.Add(State);
+                }
+                usDictionary[State].Add(Name);
+                usCities.Add(Name);
+            }
         }
     }
 }

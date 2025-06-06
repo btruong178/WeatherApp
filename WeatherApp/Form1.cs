@@ -47,11 +47,30 @@ namespace WeatherApp
                 _ = Env.Load();
                 InitializeComponent();
                 InitializeData();
+                InitializeComboBoxes();
+                //Load += HomePage_Load;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error during initialization: " + ex.Message);
             }
+        }
+
+        //private void HomePage_Load(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        btnGetWeather.Focus();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Error in \"HomePage_Load\" function: " + ex.Message);
+        //    }
+        //}
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+            btnGetWeather.Focus();
         }
 
         private void InitializeData()
@@ -63,10 +82,20 @@ namespace WeatherApp
         {
             try
             {
+                string[] StateSortedData = OpenWeather_US_City_Data.usStates.OrderBy(s => s).Prepend("- -").ToArray();
+                string[] CitySortedData = OpenWeather_US_City_Data.usCities.OrderBy(c => c).Prepend("- - - - - - - - - - - - - - -").ToArray();
+
                 cmbStates.Items.Clear();
                 cmbCity.Items.Clear();
-                cmbStates.Items.AddRange(OpenWeather_US_City_Data.usCities.Keys.OrderBy(s => s).ToArray());
-                cmbCity.Items.AddRange(OpenWeather_US_City_Data.usCities.Values.SelectMany(cities => cities).OrderBy(c => c).ToArray());
+
+                cmbStates.Items.AddRange(StateSortedData);
+                cmbCity.Items.AddRange(CitySortedData);
+
+                cmbStates.SelectedIndex = 0;
+                cmbCity.SelectedIndex = 0;
+
+                cmbStates.AutoCompleteCustomSource.AddRange(StateSortedData);
+                cmbCity.AutoCompleteCustomSource.AddRange(CitySortedData);
             }
             catch (Exception ex)
             {
@@ -77,7 +106,7 @@ namespace WeatherApp
         {
             try
             {
-                // Logic
+                
             }
             catch (Exception ex)
             {
@@ -85,10 +114,43 @@ namespace WeatherApp
                 return;
             }
         }
-        private void CmdCity_SelectionChangeCommitted(object sender, EventArgs e)
+        private void SelectionChangeCommitted_FocusToButton(object sender, EventArgs e)
         {
             _ = btnGetWeather.Focus();
         }
+        private void SelectedCityChanged_UpdateStateChoices(object sender, EventArgs e)
+        {
+            try
+            {
+                // Only Show states that belong to that city (In case city has duplicates)
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error in \"SelectedCityChanged_UpdateStateChoices\" function: " + ex.Message);
+            }
+        }
+        private void SelectedStateChanged_UpdateCityChoices(object sender, EventArgs e)
+        {
+            try
+            {
+                string stateKey = cmbStates.SelectedItem.ToString();
+                cmbCity.Items.Clear();
+                if (stateKey.Equals("- -"))
+                {
+                    cmbCity.Items.AddRange(OpenWeather_US_City_Data.usCities.OrderBy(c => c).Prepend("- - - - - - - - - - - - - - -").ToArray());
+                }
+                else if (OpenWeather_US_City_Data.usDictionary.ContainsKey(stateKey))
+                {
+                    cmbCity.Items.AddRange(OpenWeather_US_City_Data.usDictionary[stateKey].OrderBy(c => c).ToArray());
+                }
+                    cmbCity.SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error in \"SelectedStateChanged_UpdateCityChoices\" function: " + ex.Message);
+            }
+        }
+
 
     }
 }
