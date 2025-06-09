@@ -106,7 +106,7 @@ namespace WeatherApp
         {
             try
             {
-                
+                // Logic eventually
             }
             catch (Exception ex)
             {
