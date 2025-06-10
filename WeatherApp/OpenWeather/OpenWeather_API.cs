@@ -14,6 +14,7 @@ namespace WeatherApp.OpenWeather
         /// Gets or sets the name of the city for which the weather is requested.
         /// </summary>
         public string CityName { get; set; }
+        public string ZipCode { get; set; }
 
         /// <summary>
         /// Gets or sets the API key for OpenWeather. It defaults to the value provided in the OPENWEATHER_API_KEY environment variable.
@@ -44,20 +45,11 @@ namespace WeatherApp.OpenWeather
         /// Constructs the API call URL.
         /// </summary>
         /// <returns>A string representing the full API call URL.</returns>
-        public string API_Call_Url()
-        {
-            return $"{BaseUrl}?q={CityName}&appid={APIKey}&units={Units}&lang={Language}&mode={Mode}";
-        }
-
-        /// <summary>
-        /// Asynchronously calls the API and retrieves the response.
-        /// </summary>
-        /// <returns>A task that returns the API response as a string.</returns>
-        public async Task<string> API_Call_Output()
+        public async Task<string> API_Call_CityName_Output()
         {
             try
             {
-                string url = API_Call_Url();
+                string url = $"{BaseUrl}?q={CityName}&appid={APIKey}&units={Units}&lang={Language}&mode={Mode}";
                 using (HttpClient client = new HttpClient())
                 {
                     string response = await client.GetStringAsync(url);
@@ -66,7 +58,26 @@ namespace WeatherApp.OpenWeather
             }
             catch (Exception ex)
             {
-                _ = MessageBox.Show($"Error: {ex.Message}", "API Call Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _ = MessageBox.Show($"Error constructing API URL (CityName): {ex.Message}", "API URL Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+
+        }
+
+        public async Task<string> API_Call_ZipCode_Output()
+        {
+            try
+            {
+                string url = $"{BaseUrl}?zip={ZipCode}&appid={APIKey}&units={Units}&lang={Language}&mode={Mode}";
+                using (HttpClient client = new HttpClient())
+                {
+                    string response = await client.GetStringAsync(url);
+                    return string.IsNullOrEmpty(response) ? throw new Exception("No response from the API.") : response;
+                }
+            }
+            catch (Exception ex)
+            {
+                _ = MessageBox.Show($"Error constructing API URL (ZipCode): {ex.Message}", "API URL Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
         }

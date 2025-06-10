@@ -35,22 +35,26 @@
             this.CityLabel = new System.Windows.Forms.Label();
             this.cmbStates = new System.Windows.Forms.ComboBox();
             this.StateLabel = new System.Windows.Forms.Label();
+            this.ZipcodeLabel = new System.Windows.Forms.Label();
+            this.cmbCounty = new System.Windows.Forms.ComboBox();
+            this.CountyLabel = new System.Windows.Forms.Label();
+            this.cmbZipCode = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // cmbCity
             // 
             this.cmbCity.FormattingEnabled = true;
-            this.cmbCity.Location = new System.Drawing.Point(376, 55);
+            this.cmbCity.Location = new System.Drawing.Point(296, 66);
             this.cmbCity.Name = "cmbCity";
             this.cmbCity.Size = new System.Drawing.Size(160, 21);
             this.cmbCity.TabIndex = 0;
-            this.cmbCity.SelectionChangeCommitted += new System.EventHandler(this.SelectionChangeCommitted_FocusToButton);
+            this.cmbCity.SelectionChangeCommitted += new System.EventHandler(this.SelectionChangedCommitted_UpdateSelections);
             // 
             // btnGetWeather
             // 
-            this.btnGetWeather.Location = new System.Drawing.Point(542, 55);
+            this.btnGetWeather.Location = new System.Drawing.Point(695, 64);
             this.btnGetWeather.Name = "btnGetWeather";
-            this.btnGetWeather.Size = new System.Drawing.Size(85, 22);
+            this.btnGetWeather.Size = new System.Drawing.Size(85, 24);
             this.btnGetWeather.TabIndex = 1;
             this.btnGetWeather.Text = "Get Weather";
             this.btnGetWeather.UseVisualStyleBackColor = true;
@@ -60,7 +64,7 @@
             // 
             this.TitleLabel.AutoSize = true;
             this.TitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
-            this.TitleLabel.Location = new System.Drawing.Point(338, 1);
+            this.TitleLabel.Location = new System.Drawing.Point(369, 10);
             this.TitleLabel.Name = "TitleLabel";
             this.TitleLabel.Size = new System.Drawing.Size(246, 37);
             this.TitleLabel.TabIndex = 3;
@@ -70,7 +74,7 @@
             // lblWeather
             // 
             this.lblWeather.AutoSize = true;
-            this.lblWeather.Location = new System.Drawing.Point(420, 226);
+            this.lblWeather.Location = new System.Drawing.Point(437, 227);
             this.lblWeather.Name = "lblWeather";
             this.lblWeather.Size = new System.Drawing.Size(69, 13);
             this.lblWeather.TabIndex = 4;
@@ -79,37 +83,76 @@
             // CityLabel
             // 
             this.CityLabel.AutoSize = true;
-            this.CityLabel.Location = new System.Drawing.Point(436, 40);
+            this.CityLabel.Location = new System.Drawing.Point(359, 51);
             this.CityLabel.Name = "CityLabel";
-            this.CityLabel.Size = new System.Drawing.Size(32, 13);
+            this.CityLabel.Size = new System.Drawing.Size(28, 13);
             this.CityLabel.TabIndex = 5;
-            this.CityLabel.Text = "Cities";
+            this.CityLabel.Text = "City*";
             this.CityLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // cmbStates
             // 
             this.cmbStates.FormattingEnabled = true;
-            this.cmbStates.Location = new System.Drawing.Point(319, 55);
+            this.cmbStates.Location = new System.Drawing.Point(239, 66);
             this.cmbStates.Name = "cmbStates";
             this.cmbStates.Size = new System.Drawing.Size(51, 21);
             this.cmbStates.TabIndex = 6;
-            this.cmbStates.SelectedIndexChanged += new System.EventHandler(this.SelectedStateChanged_UpdateCityChoices);
-            this.cmbStates.SelectionChangeCommitted += new System.EventHandler(this.SelectionChangeCommitted_FocusToButton);
+            this.cmbStates.SelectionChangeCommitted += new System.EventHandler(this.SelectionChangedCommitted_UpdateSelections);
             // 
             // StateLabel
             // 
             this.StateLabel.AutoSize = true;
-            this.StateLabel.Location = new System.Drawing.Point(328, 40);
+            this.StateLabel.Location = new System.Drawing.Point(248, 51);
             this.StateLabel.Name = "StateLabel";
             this.StateLabel.Size = new System.Drawing.Size(32, 13);
             this.StateLabel.TabIndex = 7;
             this.StateLabel.Text = "State";
+            // 
+            // ZipcodeLabel
+            // 
+            this.ZipcodeLabel.AutoSize = true;
+            this.ZipcodeLabel.Location = new System.Drawing.Point(615, 51);
+            this.ZipcodeLabel.Name = "ZipcodeLabel";
+            this.ZipcodeLabel.Size = new System.Drawing.Size(50, 13);
+            this.ZipcodeLabel.TabIndex = 9;
+            this.ZipcodeLabel.Text = "Zipcode*";
+            // 
+            // cmbCounty
+            // 
+            this.cmbCounty.FormattingEnabled = true;
+            this.cmbCounty.Location = new System.Drawing.Point(462, 66);
+            this.cmbCounty.Name = "cmbCounty";
+            this.cmbCounty.Size = new System.Drawing.Size(121, 21);
+            this.cmbCounty.TabIndex = 10;
+            this.cmbCounty.SelectionChangeCommitted += new System.EventHandler(this.SelectionChangedCommitted_UpdateSelections);
+            // 
+            // CountyLabel
+            // 
+            this.CountyLabel.AutoSize = true;
+            this.CountyLabel.Location = new System.Drawing.Point(502, 50);
+            this.CountyLabel.Name = "CountyLabel";
+            this.CountyLabel.Size = new System.Drawing.Size(40, 13);
+            this.CountyLabel.TabIndex = 11;
+            this.CountyLabel.Text = "County";
+            // 
+            // cmbZipCode
+            // 
+            this.cmbZipCode.FormattingEnabled = true;
+            this.cmbZipCode.Location = new System.Drawing.Point(589, 66);
+            this.cmbZipCode.Name = "cmbZipCode";
+            this.cmbZipCode.Size = new System.Drawing.Size(100, 21);
+            this.cmbZipCode.TabIndex = 12;
+            this.cmbZipCode.SelectionChangeCommitted += new System.EventHandler(this.SelectionChangedCommitted_UpdateSelections);
             // 
             // HomePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 761);
+            this.Controls.Add(this.cmbZipCode);
+            this.Controls.Add(this.CountyLabel);
+            this.Controls.Add(this.cmbCounty);
+            this.Controls.Add(this.ZipcodeLabel);
             this.Controls.Add(this.StateLabel);
             this.Controls.Add(this.cmbStates);
             this.Controls.Add(this.CityLabel);
@@ -135,6 +178,10 @@
         private System.Windows.Forms.Label CityLabel;
         private System.Windows.Forms.ComboBox cmbStates;
         private System.Windows.Forms.Label StateLabel;
+        private System.Windows.Forms.Label ZipcodeLabel;
+        private System.Windows.Forms.ComboBox cmbCounty;
+        private System.Windows.Forms.Label CountyLabel;
+        private System.Windows.Forms.ComboBox cmbZipCode;
     }
 }
 

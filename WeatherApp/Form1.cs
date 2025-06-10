@@ -2,8 +2,6 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -18,9 +16,9 @@ namespace WeatherApp
         /// Represents a collection of U.S. cities supported by the OpenWeather API.
         /// </summary>
         /// <remarks>This list contains city information that can be used for weather-related queries. It
-        /// is intended to store instances of <see cref="OpenWeather_US_City_Data"/>, which encapsulate details about
+        /// is intended to store instances of <see cref="US_City_Data"/>, which encapsulate details about
         /// individual cities.</remarks>
-        private List<OpenWeather_US_City_Data> openWeatherUSData;
+        private List<US_City_Data> USCityData;
         /// <summary>
         /// Stores an instance of the OpenWeather API client for making weather requests.
         /// </summary>W
@@ -29,6 +27,13 @@ namespace WeatherApp
         /// Structure to hold the weather response data from the OpenWeather API.
         /// </summary>
         private WeatherResponse weatherResponse;
+        private readonly Dictionary<string, string> defaultValues = new Dictionary<string, string>
+        {
+            { "City", "- - - - - - - - - - - - - - -" },
+            { "State", "- -" },
+            { "ZipCode", "- - - - -" },
+            { "County", "- - - - - - - - - -" }
+        };
         /// <summary>
         /// Initializes a new instance of the <see cref="HomePage"/> class.
         /// </summary>
@@ -47,110 +52,224 @@ namespace WeatherApp
                 _ = Env.Load();
                 InitializeComponent();
                 InitializeData();
-                InitializeComboBoxes();
-                //Load += HomePage_Load;
+                InitializeSelectionGUI();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error during initialization: " + ex.Message);
+                _ = MessageBox.Show("Error during initialization: " + ex.Message);
             }
         }
-
-        //private void HomePage_Load(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        btnGetWeather.Focus();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Error in \"HomePage_Load\" function: " + ex.Message);
-        //    }
-        //}
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
-            btnGetWeather.Focus();
+            _ = btnGetWeather.Focus();
         }
 
         private void InitializeData()
         {
             string jsonCitiesString = File.ReadAllText(Environment.GetEnvironmentVariable("CITY_DATA_FILEPATH"));
-            openWeatherUSData = JsonConvert.DeserializeObject<List<OpenWeather_US_City_Data>>(jsonCitiesString);
+            USCityData = JsonConvert.DeserializeObject<List<US_City_Data>>(jsonCitiesString);
+
         }
-        private void InitializeComboBoxes()
+
+        private void InitializeSelectionGUI()
         {
-            try
+            void InitializeStateCmboxLocal()
             {
-                string[] StateSortedData = OpenWeather_US_City_Data.usStates.OrderBy(s => s).Prepend("- -").ToArray();
-                string[] CitySortedData = OpenWeather_US_City_Data.usCities.OrderBy(c => c).Prepend("- - - - - - - - - - - - - - -").ToArray();
+                try
+                {
+                    cmbStates.Items.Clear();
+                    cmbStates.Items.AddRange(USCityData.Select(x => x.State).Distinct().OrderBy(s => s)
+                        .Prepend(defaultValues["State"]).ToArray());
+                    cmbStates.SelectedIndex = 0;
+                    cmbStates.AutoCompleteCustomSource.AddRange(USCityData.Select(x => x.State).Distinct().OrderBy(s => s).ToArray());
+                }
+                catch (Exception ex)
+                {
+                    _ = MessageBox.Show("Error in \"InitializeStateComboBox\" function: " + ex.Message);
+                }
+            }
 
-                cmbStates.Items.Clear();
-                cmbCity.Items.Clear();
+            void InitializeCityCmboxLocal()
+            {
+                try
+                {
+                    cmbCity.Items.Clear();
+                    cmbCity.Items.AddRange(USCityData.Select(x => x.City).Distinct().OrderBy(c => c)
+                        .Prepend(defaultValues["City"]).ToArray());
+                    cmbCity.SelectedIndex = 0;
+                    cmbCity.AutoCompleteCustomSource.AddRange(USCityData.Select(x => x.City).Distinct().OrderBy(c => c).ToArray());
+                }
+                catch (Exception ex)
+                {
+                    _ = MessageBox.Show("Error in \"InitializeCityComboBox\" function: " + ex.Message);
+                }
+            }
 
-                cmbStates.Items.AddRange(StateSortedData);
-                cmbCity.Items.AddRange(CitySortedData);
+            void InitializeZipCmboxLocal()
+            {
+                try
+                {
+                    cmbZipCode.Items.Clear();
+                    cmbZipCode.Items.AddRange(USCityData.Select(x => x.ZipCode).Distinct().OrderBy(z => z)
+                        .Prepend(defaultValues["ZipCode"]).ToArray());
+                    cmbZipCode.SelectedIndex = 0;
+                    cmbZipCode.AutoCompleteCustomSource.AddRange(USCityData.Select(x => x.ZipCode).Distinct().OrderBy(z => z).ToArray());
+                }
+                catch (Exception ex)
+                {
+                    _ = MessageBox.Show("Error in \"InitializeZipComboBox\" function: " + ex.Message);
+                }
+            }
 
-                cmbStates.SelectedIndex = 0;
+            void InitializeCountyCmboxLocal()
+            {
+                try
+                {
+                    cmbCounty.Items.Clear();
+                    cmbCounty.Items.AddRange(USCityData.Select(x => x.County).Distinct().OrderBy(c => c)
+                        .Prepend(defaultValues["County"]).ToArray());
+                    cmbCounty.SelectedIndex = 0;
+                    cmbCounty.AutoCompleteCustomSource.AddRange(USCityData.Select(x => x.County).Distinct().OrderBy(c => c).ToArray());
+                }
+                catch (Exception ex)
+                {
+                    _ = MessageBox.Show("Error in \"InitializeCountyComboBox\" function: " + ex.Message);
+                }
+            }
+
+            // Call local initialization methods.
+            InitializeStateCmboxLocal();
+            InitializeCityCmboxLocal();
+            InitializeZipCmboxLocal();
+            InitializeCountyCmboxLocal();
+        }
+
+        private void UpdateDependentComboBoxes()
+        {
+            // Start with the full data set.
+            IEnumerable<US_City_Data> filteredData = USCityData;
+
+            // Get current selections (assuming your default values are set for unselected options)
+            string selectedCity = cmbCity.SelectedItem?.ToString() ?? defaultValues["City"];
+            string selectedState = cmbStates.SelectedItem?.ToString() ?? defaultValues["State"];
+            string selectedZip = cmbZipCode.SelectedItem?.ToString() ?? defaultValues["ZipCode"];
+            string selectedCounty = cmbCounty.SelectedItem?.ToString() ?? defaultValues["County"];
+
+            // Filter data if a meaningful selection has been made.
+            if (!selectedCity.Equals(defaultValues["City"]))
+            {
+                filteredData = filteredData.Where(x => x.City.Equals(selectedCity, StringComparison.OrdinalIgnoreCase));
+            }
+            if (!selectedState.Equals(defaultValues["State"]))
+            {
+                filteredData = filteredData.Where(x => x.State.Equals(selectedState, StringComparison.OrdinalIgnoreCase));
+            }
+            if (!selectedZip.Equals(defaultValues["ZipCode"]))
+            {
+                filteredData = filteredData.Where(x => x.ZipCode.Equals(selectedZip, StringComparison.OrdinalIgnoreCase));
+            }
+            if (!selectedCounty.Equals(defaultValues["County"]))
+            {
+                filteredData = filteredData.Where(x => x.County.Equals(selectedCounty, StringComparison.OrdinalIgnoreCase));
+            }
+
+            // Update each ComboBox with filtered, distinct values.
+            // For each, prepend the default value.
+            string[] updatedCities = filteredData.Select(x => x.City).Distinct().OrderBy(x => x).Prepend(defaultValues["City"]).ToArray();
+            string[] updatedStates = filteredData.Select(x => x.State).Distinct().OrderBy(x => x).Prepend(defaultValues["State"]).ToArray();
+            string[] updatedZips = filteredData.Select(x => x.ZipCode).Distinct().OrderBy(x => x).Prepend(defaultValues["ZipCode"]).ToArray();
+            string[] updatedCounties = filteredData.Select(x => x.County).Distinct().OrderBy(x => x).Prepend(defaultValues["County"]).ToArray();
+
+            cmbCity.Items.Clear();
+            cmbCity.Items.AddRange(updatedCities);
+            cmbStates.Items.Clear();
+            cmbStates.Items.AddRange(updatedStates);
+            cmbZipCode.Items.Clear();
+            cmbZipCode.Items.AddRange(updatedZips);
+            cmbCounty.Items.Clear();
+            cmbCounty.Items.AddRange(updatedCounties);
+
+            if (cmbCity.Items.Contains(selectedCity))
+            {
+                cmbCity.SelectedItem = selectedCity;
+            }
+            else
+            {
                 cmbCity.SelectedIndex = 0;
-
-                cmbStates.AutoCompleteCustomSource.AddRange(StateSortedData);
-                cmbCity.AutoCompleteCustomSource.AddRange(CitySortedData);
             }
-            catch (Exception ex)
+            if (cmbStates.Items.Contains(selectedState))
             {
-                MessageBox.Show("Error in \"InitializeComboBoxes\" function: " + ex.Message);
+                cmbStates.SelectedItem = selectedState;
+            }
+            else
+            {
+                cmbStates.SelectedIndex = 0;
+            }
+
+            if (cmbZipCode.Items.Contains(selectedZip))
+            {
+                cmbZipCode.SelectedItem = selectedZip;
+            }
+            else
+            {
+                cmbZipCode.SelectedIndex = 0;
+            }
+
+            if (cmbCounty.Items.Contains(selectedCounty))
+            {
+                cmbCounty.SelectedItem = selectedCounty;
+            }
+            else
+            {
+                cmbCounty.SelectedIndex = 0;
             }
         }
-        private async void BtnGetWeather_Click(object sender, EventArgs e)
+        private void SelectionChangedCommitted_UpdateSelections(object sender, EventArgs e)
         {
-            try
-            {
-                // Logic eventually
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error in \"BtnGetWeather_Click\" function: " + ex.Message);
-                return;
-            }
+            UpdateDependentComboBoxes();
         }
         private void SelectionChangeCommitted_FocusToButton(object sender, EventArgs e)
         {
             _ = btnGetWeather.Focus();
         }
-        private void SelectedCityChanged_UpdateStateChoices(object sender, EventArgs e)
+        private async void BtnGetWeather_Click(object sender, EventArgs e)
         {
             try
             {
-                // Only Show states that belong to that city (In case city has duplicates)
+                openWeatherAPI = new OpenWeather_API();
+                string city = cmbCity.SelectedItem.ToString();
+                string zipCode = cmbZipCode.SelectedItem.ToString();
+                string apiResponse = string.Empty;
+                if (city.Equals(defaultValues["City"]) && zipCode.Equals(defaultValues["ZipCode"]))
+                {
+                    _ = MessageBox.Show("Please select a valid city or zipcode");
+                    return;
+                }
+                if (!zipCode.Equals(defaultValues["ZipCode"]))
+                {
+                    openWeatherAPI.ZipCode = zipCode;
+                    apiResponse = await openWeatherAPI.API_Call_ZipCode_Output();
+                }
+                else if (!city.Equals(defaultValues["City"]))
+                {
+                    openWeatherAPI.CityName = city;
+                    apiResponse = await openWeatherAPI.API_Call_CityName_Output();
+                }
+
+                weatherResponse = JsonConvert.DeserializeObject<WeatherResponse>(apiResponse);
+                lblWeather.Text = $"Temperature: {weatherResponse.main.Temp}°F\n" +
+                                        $"Feels Like: {weatherResponse.main.Feels_Like}°F\n" +
+                                        $"Min Temperature: {weatherResponse.main.Temp_Min}°F\n" +
+                                        $"Max Temperature: {weatherResponse.main.Temp_Max}°F\n" +
+                                        $"Humidity: {weatherResponse.main.Humidity}%\n";
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error in \"SelectedCityChanged_UpdateStateChoices\" function: " + ex.Message);
+                _ = MessageBox.Show("Error in \"BtnGetWeather_Click\" function: " + ex.Message);
+                return;
             }
         }
-        private void SelectedStateChanged_UpdateCityChoices(object sender, EventArgs e)
-        {
-            try
-            {
-                string stateKey = cmbStates.SelectedItem.ToString();
-                cmbCity.Items.Clear();
-                if (stateKey.Equals("- -"))
-                {
-                    cmbCity.Items.AddRange(OpenWeather_US_City_Data.usCities.OrderBy(c => c).Prepend("- - - - - - - - - - - - - - -").ToArray());
-                }
-                else if (OpenWeather_US_City_Data.usDictionary.ContainsKey(stateKey))
-                {
-                    cmbCity.Items.AddRange(OpenWeather_US_City_Data.usDictionary[stateKey].OrderBy(c => c).ToArray());
-                }
-                    cmbCity.SelectedIndex = 0;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error in \"SelectedStateChanged_UpdateCityChoices\" function: " + ex.Message);
-            }
-        }
-
-
     }
 }
