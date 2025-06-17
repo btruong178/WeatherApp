@@ -1,6 +1,6 @@
 ﻿namespace WeatherApp
 {
-    partial class HomePage
+    partial class WeatherForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@
             this.cmbCity = new System.Windows.Forms.ComboBox();
             this.btnGetWeather = new System.Windows.Forms.Button();
             this.TitleLabel = new System.Windows.Forms.Label();
-            this.lblWeather = new System.Windows.Forms.Label();
+            this.lblCurrentWeather = new System.Windows.Forms.Label();
             this.CityLabel = new System.Windows.Forms.Label();
             this.cmbStates = new System.Windows.Forms.ComboBox();
             this.StateLabel = new System.Windows.Forms.Label();
@@ -39,6 +39,7 @@
             this.cmbCounty = new System.Windows.Forms.ComboBox();
             this.CountyLabel = new System.Windows.Forms.Label();
             this.cmbZipCode = new System.Windows.Forms.ComboBox();
+            this.btnReset = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cmbCity
@@ -73,12 +74,12 @@
             // 
             // lblWeather
             // 
-            this.lblWeather.AutoSize = true;
-            this.lblWeather.Location = new System.Drawing.Point(437, 227);
-            this.lblWeather.Name = "lblWeather";
-            this.lblWeather.Size = new System.Drawing.Size(69, 13);
-            this.lblWeather.TabIndex = 4;
-            this.lblWeather.Text = "Weather Info";
+            this.lblCurrentWeather.AutoSize = true;
+            this.lblCurrentWeather.Location = new System.Drawing.Point(437, 227);
+            this.lblCurrentWeather.Name = "lblWeather";
+            this.lblCurrentWeather.Size = new System.Drawing.Size(69, 13);
+            this.lblCurrentWeather.TabIndex = 4;
+            this.lblCurrentWeather.Text = "Weather Info";
             // 
             // CityLabel
             // 
@@ -144,11 +145,27 @@
             this.cmbZipCode.TabIndex = 12;
             this.cmbZipCode.SelectionChangeCommitted += new System.EventHandler(this.SelectionChangedCommitted_UpdateSelections);
             // 
+            // btnReset
+            // 
+            this.btnReset.FlatAppearance.BorderSize = 0;
+            this.btnReset.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnReset.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReset.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.btnReset.Location = new System.Drawing.Point(187, 64);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(46, 24);
+            this.btnReset.TabIndex = 13;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
             // HomePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 761);
+            this.Controls.Add(this.btnReset);
             this.Controls.Add(this.cmbZipCode);
             this.Controls.Add(this.CountyLabel);
             this.Controls.Add(this.cmbCounty);
@@ -156,7 +173,7 @@
             this.Controls.Add(this.StateLabel);
             this.Controls.Add(this.cmbStates);
             this.Controls.Add(this.CityLabel);
-            this.Controls.Add(this.lblWeather);
+            this.Controls.Add(this.lblCurrentWeather);
             this.Controls.Add(this.TitleLabel);
             this.Controls.Add(this.btnGetWeather);
             this.Controls.Add(this.cmbCity);
@@ -174,7 +191,7 @@
         private System.Windows.Forms.ComboBox cmbCity;
         private System.Windows.Forms.Button btnGetWeather;
         private System.Windows.Forms.Label TitleLabel;
-        private System.Windows.Forms.Label lblWeather;
+        private System.Windows.Forms.Label lblCurrentWeather;
         private System.Windows.Forms.Label CityLabel;
         private System.Windows.Forms.ComboBox cmbStates;
         private System.Windows.Forms.Label StateLabel;
@@ -182,6 +199,7 @@
         private System.Windows.Forms.ComboBox cmbCounty;
         private System.Windows.Forms.Label CountyLabel;
         private System.Windows.Forms.ComboBox cmbZipCode;
+        private System.Windows.Forms.Button btnReset;
     }
 }
 

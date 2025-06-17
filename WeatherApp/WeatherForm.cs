@@ -10,7 +10,7 @@ using WeatherApp.OpenWeather.Data;
 
 namespace WeatherApp
 {
-    public partial class HomePage : Form
+    public partial class WeatherForm : Form
     {
         /// <summary>
         /// Represents a collection of U.S. cities supported by the OpenWeather API.
@@ -35,7 +35,7 @@ namespace WeatherApp
             { "County", "- - - - - - - - - -" }
         };
         /// <summary>
-        /// Initializes a new instance of the <see cref="HomePage"/> class.
+        /// Initializes a new instance of the <see cref="WeatherForm"/> class.
         /// </summary>
         /// <remarks>
         /// This constructor performs the following actions: 
@@ -45,7 +45,7 @@ namespace WeatherApp
         /// If an error occurs during initialization, a message box is displayed
         /// with the error details.
         /// </remarks>
-        public HomePage()
+        public WeatherForm()
         {
             try
             {
@@ -147,16 +147,13 @@ namespace WeatherApp
 
         private void UpdateDependentComboBoxes()
         {
-            // Start with the full data set.
             IEnumerable<US_City_Data> filteredData = USCityData;
 
-            // Get current selections (assuming your default values are set for unselected options)
             string selectedCity = cmbCity.SelectedItem?.ToString() ?? defaultValues["City"];
             string selectedState = cmbStates.SelectedItem?.ToString() ?? defaultValues["State"];
             string selectedZip = cmbZipCode.SelectedItem?.ToString() ?? defaultValues["ZipCode"];
             string selectedCounty = cmbCounty.SelectedItem?.ToString() ?? defaultValues["County"];
 
-            // Filter data if a meaningful selection has been made.
             if (!selectedCity.Equals(defaultValues["City"]))
             {
                 filteredData = filteredData.Where(x => x.City.Equals(selectedCity, StringComparison.OrdinalIgnoreCase));
@@ -174,8 +171,6 @@ namespace WeatherApp
                 filteredData = filteredData.Where(x => x.County.Equals(selectedCounty, StringComparison.OrdinalIgnoreCase));
             }
 
-            // Update each ComboBox with filtered, distinct values.
-            // For each, prepend the default value.
             string[] updatedCities = filteredData.Select(x => x.City).Distinct().OrderBy(x => x).Prepend(defaultValues["City"]).ToArray();
             string[] updatedStates = filteredData.Select(x => x.State).Distinct().OrderBy(x => x).Prepend(defaultValues["State"]).ToArray();
             string[] updatedZips = filteredData.Select(x => x.ZipCode).Distinct().OrderBy(x => x).Prepend(defaultValues["ZipCode"]).ToArray();
@@ -240,7 +235,8 @@ namespace WeatherApp
                 openWeatherAPI = new OpenWeather_API();
                 string city = cmbCity.SelectedItem.ToString();
                 string zipCode = cmbZipCode.SelectedItem.ToString();
-                string apiResponse = string.Empty;
+                string CurrentWeather_apiResponse = string.Empty;
+                string Forecast_apiResponse = string.Empty;
                 if (city.Equals(defaultValues["City"]) && zipCode.Equals(defaultValues["ZipCode"]))
                 {
                     _ = MessageBox.Show("Please select a valid city or zipcode");
@@ -249,26 +245,44 @@ namespace WeatherApp
                 if (!zipCode.Equals(defaultValues["ZipCode"]))
                 {
                     openWeatherAPI.ZipCode = zipCode;
-                    apiResponse = await openWeatherAPI.API_Call_ZipCode_Output();
+                    CurrentWeather_apiResponse = await openWeatherAPI.Get_CurrentWeather_via_Zipcode();
                 }
                 else if (!city.Equals(defaultValues["City"]))
                 {
                     openWeatherAPI.CityName = city;
-                    apiResponse = await openWeatherAPI.API_Call_CityName_Output();
+                    CurrentWeather_apiResponse = await openWeatherAPI.Get_CurrentWeather_via_CityName();
                 }
 
-                weatherResponse = JsonConvert.DeserializeObject<WeatherResponse>(apiResponse);
-                lblWeather.Text = $"Temperature: {weatherResponse.main.Temp}°F\n" +
+                weatherResponse = JsonConvert.DeserializeObject<WeatherResponse>(CurrentWeather_apiResponse);
+                lblCurrentWeather.Text = $"Temperature: {weatherResponse.main.Temp}°F\n" +
                                         $"Feels Like: {weatherResponse.main.Feels_Like}°F\n" +
                                         $"Min Temperature: {weatherResponse.main.Temp_Min}°F\n" +
                                         $"Max Temperature: {weatherResponse.main.Temp_Max}°F\n" +
                                         $"Humidity: {weatherResponse.main.Humidity}%\n";
+                this.Hide();
+                WeatherInfo weatherInfo = new WeatherInfo();
 
             }
             catch (Exception ex)
             {
                 _ = MessageBox.Show("Error in \"BtnGetWeather_Click\" function: " + ex.Message);
                 return;
+            }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbCity.SelectedIndex = 0;
+                cmbStates.SelectedIndex = 0;
+                cmbZipCode.SelectedIndex = 0;
+                cmbCounty.SelectedIndex = 0;
+                UpdateDependentComboBoxes();
+            }
+            catch (Exception ex)
+            {
+                _ = MessageBox.Show("Error in \"btnReset_Click\" function: " + ex.Message);
             }
         }
     }

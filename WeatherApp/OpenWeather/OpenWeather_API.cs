@@ -24,8 +24,9 @@ namespace WeatherApp.OpenWeather
         /// <summary>
         /// Gets or sets the base URL for the OpenWeather API.
         /// </summary>
-        public string BaseUrl { get; set; } = "https://api.openweathermap.org/data/2.5/weather";
+        public string CurrentWeather_BaseUrl { get; set; } = "https://api.openweathermap.org/data/2.5/weather";
 
+        public string Forecast_BaseUrl { get; set; } = "https://api.openweathermap.org/data/2.5/forecast";
         /// <summary>
         /// Gets or sets the units parameter for the API call. Defaults to "imperial".
         /// </summary>
@@ -45,11 +46,11 @@ namespace WeatherApp.OpenWeather
         /// Constructs the API call URL.
         /// </summary>
         /// <returns>A string representing the full API call URL.</returns>
-        public async Task<string> API_Call_CityName_Output()
+        public async Task<string> Get_CurrentWeather_via_CityName()
         {
             try
             {
-                string url = $"{BaseUrl}?q={CityName}&appid={APIKey}&units={Units}&lang={Language}&mode={Mode}";
+                string url = $"{CurrentWeather_BaseUrl}?q={CityName}&appid={APIKey}&units={Units}&lang={Language}&mode={Mode}";
                 using (HttpClient client = new HttpClient())
                 {
                     string response = await client.GetStringAsync(url);
@@ -64,11 +65,11 @@ namespace WeatherApp.OpenWeather
 
         }
 
-        public async Task<string> API_Call_ZipCode_Output()
+        public async Task<string> Get_CurrentWeather_via_Zipcode()
         {
             try
             {
-                string url = $"{BaseUrl}?zip={ZipCode}&appid={APIKey}&units={Units}&lang={Language}&mode={Mode}";
+                string url = $"{CurrentWeather_BaseUrl}?zip={ZipCode}&appid={APIKey}&units={Units}&lang={Language}&mode={Mode}";
                 using (HttpClient client = new HttpClient())
                 {
                     string response = await client.GetStringAsync(url);
@@ -78,6 +79,42 @@ namespace WeatherApp.OpenWeather
             catch (Exception ex)
             {
                 _ = MessageBox.Show($"Error constructing API URL (ZipCode): {ex.Message}", "API URL Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+
+        public async Task<string> Get_Forecast_via_CityName()
+        {
+            try
+            {
+                string url = $"{Forecast_BaseUrl}?q={CityName}&appid={APIKey}&units={Units}&lang={Language}&mode={Mode}";
+                using (HttpClient client = new HttpClient())
+                {
+                    string response = await client.GetStringAsync(url);
+                    return string.IsNullOrEmpty(response) ? throw new Exception("No response from the API.") : response;
+                }
+            }
+            catch (Exception ex)
+            {
+                _ = MessageBox.Show($"Error constructing API URL (Forecast CityName): {ex.Message}", "API URL Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+
+        public async Task<string> Get_Forecast_via_Zipcode()
+        {
+            try
+            {
+                string url = $"{Forecast_BaseUrl}?zip={ZipCode}&appid={APIKey}&units={Units}&lang={Language}&mode={Mode}";
+                using (HttpClient client = new HttpClient())
+                {
+                    string response = await client.GetStringAsync(url);
+                    return string.IsNullOrEmpty(response) ? throw new Exception("No response from the API.") : response;
+                }
+            }
+            catch (Exception ex)
+            {
+                _ = MessageBox.Show($"Error constructing API URL (Forecast ZipCode): {ex.Message}", "API URL Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
         }
